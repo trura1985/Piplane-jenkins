@@ -1,0 +1,48 @@
+pipeline {
+//  agent { docker { image 'python:latest' }} // для подключения докеров
+    agent any
+    
+    environment{
+        PROJECT_NAME = "Name_of_project"
+        OWNER_NAME   = "Rura"
+    }
+      
+    stages {
+        stage('Build') {
+            steps {
+                echo 'this is first stage - build'
+                echo 'end of stage'
+                sleep 5
+                sh "ls -la"
+            }
+        }
+        
+        stage('Test-srage') {
+            steps {
+                echo 'this is second-stage - test'
+                echo 'building...'
+                sh '''
+                    echo 'Line 1'
+                    sleep 1
+                    echo 'Line 2'
+                    sleep 1
+                '''
+                echo 'end of stage'
+                sleep 2
+                
+            }
+        }
+        
+        stage('Deploy-stage') {
+            steps {
+                echo 'this is third-stage - deploy'
+                echo 'end of stage'
+                sh "python --version"
+                echo "Hello ${OWNER_NAME}"
+                echo "Project name is ${PROJECT_NAME}"
+            }
+        }
+        
+        
+    }
+}
