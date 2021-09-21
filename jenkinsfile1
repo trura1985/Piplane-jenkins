@@ -15,6 +15,7 @@ pipeline {
                 echo "Start of Stage Test"
                 echo "Testing......."
                 echo "End of Stage Build"
+                sh "ls -la"
             }
         }
         stage('3-Deploy') {
